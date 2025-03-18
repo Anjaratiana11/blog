@@ -1,3 +1,6 @@
+create database designova;
+use designova;
+
 -- Table pour les catégories d'articles
 CREATE TABLE categories (
   id INT AUTO_INCREMENT PRIMARY KEY,        -- Identifiant unique pour chaque catégorie
@@ -36,3 +39,4 @@ CREATE TABLE contact (
   message TEXT NOT NULL,                     -- Message envoyé par l'utilisateur
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Date d'envoi du message
 );
+

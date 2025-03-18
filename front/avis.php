@@ -47,6 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Articles</a></li>
+                <li><a href="about.php">À propos</a></li>
+                <li><a href="contact.php">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
         <section id="article-reviews">
             <h1>Avis sur l'article</h1>

@@ -30,7 +30,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Accueil</a></li>
+                <li><a href="index.php">Articles</a></li>
                 <li><a href="about.php">À propos</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>

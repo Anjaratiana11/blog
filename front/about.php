@@ -22,10 +22,9 @@
         <nav>
             <!-- Inclure ici une barre de navigation -->
             <ul>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="article.php">Articles</a></li>
+                <li><a href="index.php">Articles</a></li>
+                <li><a href="about.php">À propos</a></li>
                 <li><a href="contact.php">Contact</a></li>
-                <li><a href="avis.php">Avis</a></li>
             </ul>
         </nav>
     </header>

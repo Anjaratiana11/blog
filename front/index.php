@@ -26,10 +26,9 @@
 </head>
 <body>
     <header>
-        <h1>Designova - Blog Digital & Design</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Accueil</a></li>
+                <li><a href="index.php">Articles</a></li>
                 <li><a href="about.php">À propos</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>

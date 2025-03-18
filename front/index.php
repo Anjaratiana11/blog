@@ -65,9 +65,9 @@
                 <?php foreach ($articles as $article): ?>
                     <article>
                         <h3><a href="article.php?id=<?= $article['id'] ?>" 
-                        onclick="gtag('event', 'click', { 'event_category': 'Article', 'event_label': '<?= htmlspecialchars($article['title']) ?>' });"><?= htmlspecialchars($article['title']) ?></a></h3>
+                        ><?= htmlspecialchars($article['title']) ?></a></h3>
                         <p><?= htmlspecialchars($article['content']) ?></p>
-                        <a href="article.php?id=<?= $article['id'] ?>" class="btn">Lire l’article</a>
+                        <a href="article.php?id=<?= $article['id'] ?>" class="btn" onclick="gtag('event', 'click', { 'event_category': 'Article', 'event_label': '<?= htmlspecialchars($article['title']) ?>' });">Lire l’article</a>
                     </article>
                 <?php endforeach; ?>
             <?php else: ?>

@@ -15,8 +15,7 @@ CREATE TABLE articles (
   content TEXT NOT NULL,                     -- Contenu de l'article
   author VARCHAR(100),                       -- Auteur de l'article
   category_id INT,                           -- Référence à la catégorie de l'article
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Date de création
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Dernière mise à jour
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Date de création 
   FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL -- Lien vers la catégorie
 );
 

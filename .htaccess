@@ -1,1 +1,7 @@
-Commande ECHO activ‚e.
+RewriteEngine On
+RewriteBase /blog/
+
+# Pour rediriger toutes les requÃªtes vers index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

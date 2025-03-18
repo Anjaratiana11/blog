@@ -1,3 +1,15 @@
+<?php 
+    require_once('includes/fonctions.php');
+
+    // Récupérer toutes les catégories
+    $categories = findAllCategories();
+
+    // Vérifier si une catégorie est sélectionnée
+    $idCategorie = isset($_GET['idcategorie']) ? intval($_GET['idcategorie']) : null;
+
+    // Récupérer les articles en fonction de la catégorie sélectionnée
+    $articles = $idCategorie ? findArticleByCategories($idCategorie) : findAllArticles();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,7 +19,7 @@
     <meta name="keywords" content="digital, design, tendances, SEO, communication, graphisme">
     <meta name="author" content="Designova Team">
     <title>Designova - Blog Digital & Design</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
@@ -25,19 +37,34 @@
     </header>
 
     <main>
+        <section id="categories">
+            <h2>Catégories</h2>
+            <ul>
+                <li><a href="index.php" <?= is_null($idCategorie) ? 'class="active"' : '' ?>>Toutes les catégories</a></li>
+                <?php foreach ($categories as $categorie): ?>
+                    <li>
+                        <a href="index.php?idcategorie=<?= $categorie['id'] ?>" <?= ($idCategorie == $categorie['id']) ? 'class="active"' : '' ?>>
+                            <?= htmlspecialchars($categorie['name']) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+
         <section id="articles">
-            <h2>Derniers Articles</h2>
-            <article>
-                <h3><a href="article.php">Les tendances UI/UX en 2025</a></h3>
-                <p>Découvrez les dernières évolutions du design d’interface et de l’expérience utilisateur.</p>
-                <a href="article.php" class="btn">Lire l’article</a>
-            </article>
-            
-            <article>
-                <h3><a href="article.php">SEO pour les designers : Comment être visible ?</a></h3>
-                <p>Conseils pratiques pour optimiser votre portfolio et votre contenu digital.</p>
-                <a href="article.php" class="btn">Lire l’article</a>
-            </article>
+            <h2><?= $idCategorie ? "Articles de la catégorie : " . htmlspecialchars($categories[array_search($idCategorie, array_column($categories, 'id'))]['name']) : "Derniers Articles" ?></h2>
+
+            <?php if (!empty($articles)): ?>
+                <?php foreach ($articles as $article): ?>
+                    <article>
+                        <h3><a href="article.php?id=<?= $article['id'] ?>"><?= htmlspecialchars($article['title']) ?></a></h3>
+                        <p><?= htmlspecialchars($article['content']) ?></p>
+                        <a href="article.php?id=<?= $article['id'] ?>" class="btn">Lire l’article</a>
+                    </article>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Aucun article trouvé.</p>
+            <?php endif; ?>
         </section>
     </main>
 

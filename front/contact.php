@@ -1,7 +1,5 @@
-<?php 
-    // Inclure ici les fichiers nécessaires comme header et navbar si besoin.
-    // include('includes/header.php');
-    // include('includes/navbar.php');
+<?php  
+    include('includes/fonctions.php');   // Ce fichier doit contenir la fonction ajouterContact()
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +32,23 @@
             <h1>Contactez-nous</h1>
             <p>Nous serions ravis de recevoir vos questions, suggestions, ou commentaires. N'hésitez pas à nous envoyer un message en utilisant le formulaire ci-dessous :</p>
 
-            <form action="process_form.php" method="POST">
+            <?php
+            // Traitement du formulaire
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $message = $_POST['message'];
+
+                // Appeler la fonction ajouterContact
+                if (ajoutContact($name, $email, $message)) {
+                    echo "<p>Votre message a été envoyé avec succès !</p>";
+                } else {
+                    echo "<p>Erreur lors de l'envoi du message. Veuillez réessayer.</p>";
+                }
+            }
+            ?>
+
+            <form action="contact.php" method="POST">
                 <div>
                     <label for="name">Nom :</label>
                     <input type="text" id="name" name="name" required>

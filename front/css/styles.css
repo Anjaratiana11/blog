@@ -396,6 +396,12 @@ footer p {
     margin-bottom: 15px;
 }
 
+.rating {
+    color: gold; /* Couleur des étoiles */
+    font-size: 1.5rem; /* Taille des étoiles */
+    margin-bottom: 10px; /* Espacement entre les étoiles et le reste du texte */
+}
+
 .reviews {
     margin-bottom: 30px;
 }

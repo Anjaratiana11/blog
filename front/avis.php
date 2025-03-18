@@ -87,5 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </section>
     </main>
+    
+    <footer>
+        &copy; 2025 Designova 2686-2824- Tous droits réservés
+    </footer>
 </body>
 </html>

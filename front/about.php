@@ -50,11 +50,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Designova. Tous droits réservés.</p>
-        <ul>
-            <li><a href="privacy-policy.php">Politique de confidentialité</a></li>
-            <li><a href="terms.php">Conditions d'utilisation</a></li>
-        </ul>
+        &copy; 2025 Designova 2686-2824. Tous droits réservés.
     </footer>
 </body>
 </html>

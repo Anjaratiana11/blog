@@ -1,0 +1,353 @@
+/* Reset des marges et des paddings pour éviter les conflits de mise en page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Police globale */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Couleurs principales */
+:root {
+    --primary-color: #2a9d8f; /* Couleur de la marque */
+    --secondary-color: #e9c46a;
+    --accent-color: #264653;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+}
+
+/* En-tête */
+header {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Mise en forme des titres */
+h1, h2 {
+    color: var(--primary-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Style des paragraphes */
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* Formulaire de modification d'article */
+.edit-article-form {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+.edit-article-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.edit-article-form input,
+.edit-article-form textarea,
+.edit-article-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.edit-article-form button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-article-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Liste des articles */
+.article-list {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.article-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.article-list th,
+.article-list td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.article-list th {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.article-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.article-list .btn-edit,
+.article-list .btn-delete {
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.article-list .btn-edit {
+    background-color: var(--secondary-color);
+}
+
+.article-list .btn-delete {
+    background-color: #e63946;
+}
+
+.article-list .btn-edit:hover {
+    background-color: #f4a261;
+}
+
+.article-list .btn-delete:hover {
+    background-color: #d32f2f;
+}
+
+/* Bouton "Nouveau Article" */
+.new-article-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-new-article {
+    background-color: var(--primary-color); /* Couleur de fond verte */
+    color: white; /* Texte en blanc */
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none; /* Enlever le souligné par défaut */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-new-article:hover {
+    background-color:var(--secondary-color); /* Changer la couleur au survol */
+    transform: scale(1.05); /* Ajouter un effet de zoom au survol */
+}
+
+.btn-new-article:active {
+    background-color:var(--primary-color);/* Couleur un peu plus sombre lors du clic */
+    transform: scale(1); /* Réduire l'effet de zoom lors du clic */
+}
+
+/* Section des messages d'erreur et succès */
+.message p {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.message .error {
+    background-color: #e63946;
+    color: #fff;
+}
+
+.message .success {
+    background-color: #2a9d8f;
+    color: #fff;
+}
+.contact-list {
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #fff;
+}
+
+.contact-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.contact-item p {
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+/* Section formulaire de création d'article */
+.article-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9; /* Fond léger pour la section */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.article-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.article-form input, .article-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.article-form textarea {
+    height: 200px; /* Hauteur plus grande pour le texte */
+    resize: vertical; /* Permet de redimensionner verticalement */
+}
+
+.article-form input:focus, .article-form textarea:focus {
+    border-color: #4CAF50; /* Bordure verte lors de la mise au point */
+    outline: none; /* Enlever le contour bleu par défaut */
+}
+
+.article-form .error {
+    color: #ff4d4d;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Bouton de soumission */
+.btn-submit {
+    background-color: var(--primary-color); /* Couleur de fond verte */
+    color: white; /* Texte en blanc */
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none; /* Enlever le souligné par défaut */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-submit:hover {
+    background-color:var(--secondary-color); /* Changer la couleur au survol */
+    transform: scale(1.05); /* Ajouter un effet de zoom au survol */
+}
+
+.btn-submit:active {
+    background-color:var(--primary-color);/* Couleur un peu plus sombre lors du clic */
+    transform: scale(1); 
+}
+
+/* Stylisation du select */
+.article-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/* Effet de focus sur le select */
+.article-form select:focus {
+    border-color: #4CAF50; /* Bordure verte lors du focus */
+    outline: none; /* Enlever le contour bleu par défaut */
+}
+
+/* Option stylisée */
+.article-form select option {
+    padding: 10px;
+    background-color: #f9f9f9; /* Fond de l'option */
+    font-size: 1rem;
+}
+
+/* Effet de survol sur les options */
+.article-form select option:hover {
+    background-color: #f1f1f1; /* Changement de fond au survol */
+}
+
+
+/* Mise en forme du footer */
+footer {
+    background-color: var(--accent-color);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Liens dans le footer */
+footer a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

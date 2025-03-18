@@ -52,7 +52,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </main>
 
     <footer>
-        <p>&copy; 2025 Designova - Tous droits réservés</p>
+        &copy; 2025 Designova 2686-2824 - Tous droits réservés
     </footer>
 </body>
 </html>

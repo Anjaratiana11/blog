@@ -1,7 +1,9 @@
 INSERT INTO categories (name, description) VALUES
 ('SEO', 'Optimisation des moteurs de recherche pour améliorer la visibilité en ligne.'),
 ('UX/UI', 'Design d\'interface utilisateur et expérience utilisateur pour une navigation fluide.'),
-('Marketing digital', 'Stratégies de marketing utilisant les canaux numériques pour promouvoir des produits ou services.');
+('Marketing digital', 'Stratégies de marketing utilisant les canaux numériques pour promouvoir des produits ou services.'),
+('Design Graphique', 'La catégorie dédiée aux articles portant sur le design graphique, les tendances du visuel et les meilleures pratiques du design.');
+
 
 -- Insérer des articles en lien avec les catégories
 INSERT INTO articles (title, content, author, category_id) VALUES

@@ -74,7 +74,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Designova - Tous droits réservés</p>
+        &copy; 2025 Designova 2686-2824 - Tous droits réservés
     </footer>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>

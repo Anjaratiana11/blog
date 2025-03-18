@@ -223,32 +223,60 @@ header nav ul li a.active {
     margin-bottom: 30px;
 }
 
+/* Titre des catégories */
 #categories h2 {
     color: var(--primary-color);
     font-size: 1.8rem;
     margin-bottom: 15px;
 }
 
-#categories ul {
-    list-style: none;
-    padding-left: 0;
+/* Style du select */
+#categories select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: none; /* Retirer l'ombre ici */
 }
 
-#categories ul li {
-    margin-bottom: 10px;
+/* Apparence de l'option sélectionnée */
+#categories select option {
+    padding: 10px;
+    font-size: 1.1rem;
 }
 
-#categories ul li a {
+/* Changement de couleur lors de la sélection */
+#categories select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: none; /* Retirer l'ombre au focus également */
+}
+
+/* Option sélectionnée */
+#categories select option[selected] {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Style général pour les liens (si besoin) */
+#categories ul li a,
+#categories select option {
     color: #333;
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
 }
 
-#categories ul li a:hover,
-#categories ul li a.active {
-    color: var(--primary-color);
+#categories select option:hover {
+    background-color: var(--primary-color);
+    color: #fff;
 }
+
 
 /* Section des articles */
 #articles {
@@ -366,6 +394,12 @@ footer p {
     color: var(--primary-color);
     margin-top: 30px;
     margin-bottom: 15px;
+}
+
+.rating {
+    color: gold; /* Couleur des étoiles */
+    font-size: 1.5rem; /* Taille des étoiles */
+    margin-bottom: 10px; /* Espacement entre les étoiles et le reste du texte */
 }
 
 .reviews {

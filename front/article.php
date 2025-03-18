@@ -52,7 +52,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </main>
 
     <footer>
-        <p>&copy; 2025 Designova - Tous droits réservés</p>
+        &copy; 2025 Designova 2686-2824 - Tous droits réservés
     </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </body>
 </html>

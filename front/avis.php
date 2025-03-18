@@ -62,14 +62,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <h2>Avis des lecteurs</h2>
             <div class="reviews">
-                <?php foreach ($avis as $a) : ?>
-                    <article class="review">
-                        <h3><?= htmlspecialchars($a['name']) ?></h3>
-                        <p><?= htmlspecialchars($a['review']) ?></p>
-                        <small>Note: <?= $a['rating'] ?>/5</small>
-                        <small>Posté le <?= $a['created_at'] ?></small>
-                    </article>
-                <?php endforeach; ?>
+    <?php foreach ($avis as $a) : ?>
+        <article class="review">
+            <h3><?= htmlspecialchars($a['name']) ?></h3>
+            <p><?= htmlspecialchars($a['review']) ?></p>
+            
+            <div class="rating">
+                <?php
+                // Affichage des étoiles
+                for ($i = 1; $i <= 5; $i++) {
+                    // Si la note est supérieure ou égale à l'étoile actuelle, on affiche une étoile pleine
+                    if ($i <= $a['rating']) {
+                        echo '★'; // Étoile pleine
+                    } else {
+                        echo '☆'; // Étoile vide
+                    }
+                }
+                ?>
+            </div>
+            
+            <small>Posté le <?= $a['created_at'] ?></small>
+            </article>
+            <?php endforeach; ?>
             </div>
 
             <h2>Ajoutez votre avis</h2>
@@ -87,5 +101,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </section>
     </main>
+    
+    <footer>
+        &copy; 2025 Designova 2686-2824- Tous droits réservés
+    </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
 </body>
 </html>

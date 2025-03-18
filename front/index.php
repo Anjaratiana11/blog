@@ -46,16 +46,16 @@
     <main>
         <section id="categories">
             <h2>Catégories</h2>
-            <ul>
-                <li><a href="index.php" <?= is_null($idCategorie) ? 'class="active"' : '' ?>>Toutes les catégories</a></li>
-                <?php foreach ($categories as $categorie): ?>
-                    <li>
-                        <a href="index.php?idcategorie=<?= $categorie['id'] ?>" <?= ($idCategorie == $categorie['id']) ? 'class="active"' : '' ?>>
+            <form action="index.php" method="get">
+                <select name="idcategorie" id="categories-select" onchange="this.form.submit()">
+                    <option value="" <?= is_null($idCategorie) ? 'selected' : '' ?>>Toutes les catégories</option>
+                    <?php foreach ($categories as $categorie): ?>
+                        <option value="<?= $categorie['id'] ?>" <?= ($idCategorie == $categorie['id']) ? 'selected' : '' ?>>
                             <?= htmlspecialchars($categorie['name']) ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </form>
         </section>
 
         <section id="articles">
@@ -76,7 +76,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Designova - Tous droits réservés</p>
+        &copy; 2025 Designova 2686-2824 - Tous droits réservés
     </footer>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>

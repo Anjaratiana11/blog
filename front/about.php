@@ -15,6 +15,12 @@
     <title>À propos - Designova</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JHFERGL7X5');
+    </script>
 </head>
 
 <body>

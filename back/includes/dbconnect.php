@@ -15,7 +15,6 @@ if ($conn->connect_error) {
 }
 
 // Si la connexion est réussie, cette ligne sera exécutée
-echo "Connexion réussie";
 
 // Paramétrer le jeu de caractères pour éviter les problèmes de codage
 $conn->set_charset("utf8");

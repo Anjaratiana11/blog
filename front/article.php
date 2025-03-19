@@ -24,6 +24,12 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta name="author" content="<?= htmlspecialchars($article['author']) ?>">
     <title><?= htmlspecialchars($article['title']) ?> - Designova</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JHFERGL7X5');
+    </script>
 </head>
 
 <body>

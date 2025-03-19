@@ -45,6 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="author" content="Designova Team">
     <title>Avis sur l'article - Designova</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JHFERGL7X5');
+    </script>
 </head>
 <body>
     <header>

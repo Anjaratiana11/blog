@@ -1,12 +1,13 @@
 <?php
 
-$servername = "localhost";
-$username = "root";        
-$password = "root";          
-$dbname = "designova";   
+$servername = "trolley.proxy.rlwy.net";  
+$username = "root";                      
+$password = "PufACVtDSQDNMhWtQJHIJMNEGmdyKwKa";  
+$dbname = "railway";                      
+$port = 49046;                           
 
 // Création de la connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
 
 // Vérifier si la connexion est réussie
 if ($conn->connect_error) {
@@ -14,7 +15,6 @@ if ($conn->connect_error) {
 }
 
 // Si la connexion est réussie, cette ligne sera exécutée
-// echo "Connexion réussie";
 
 // Paramétrer le jeu de caractères pour éviter les problèmes de codage
 $conn->set_charset("utf8");

@@ -30,9 +30,19 @@
         gtag('js', new Date());
         gtag('config', 'G-JHFERGL7X5');
     </script>
-
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MFH5GXK7');</script>
+    <!-- End Google Tag Manager -->
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFH5GXK7"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header>
         <nav>
             <ul>
@@ -64,9 +74,10 @@
             <?php if (!empty($articles)): ?>
                 <?php foreach ($articles as $article): ?>
                     <article>
-                        <h3><a href="article.php?id=<?= $article['id'] ?>"><?= htmlspecialchars($article['title']) ?></a></h3>
+                        <h3><a href="article.php?id=<?= $article['id'] ?>" 
+                        ><?= htmlspecialchars($article['title']) ?></a></h3>
                         <p><?= htmlspecialchars($article['content']) ?></p>
-                        <a href="article.php?id=<?= $article['id'] ?>" class="btn">Lire l’article</a>
+                        <a href="article.php?id=<?= $article['id'] ?>" class="btn" onclick="gtag('event', 'click', { 'event_category': 'Article', 'event_label': '<?= htmlspecialchars($article['title']) ?>' });">Lire l’article</a>
                     </article>
                 <?php endforeach; ?>
             <?php else: ?>

@@ -10,7 +10,7 @@ $client = new Google_Client();
 $client->setApplicationName("Designova Analytics Dashboard");
 
 // Charger les credentials à partir du secret ou d'une variable d'environnement
-$credentialsPath = '/etc/secrets/google_credentials.json'; // Chemin vers le fichier de credentials dans Docker
+$credentialsPath = '/etc/secrets/designova-454205-6856ed361431.json'; // Chemin vers le fichier de credentials dans Docker
 if (file_exists($credentialsPath)) {
     $client->setAuthConfig($credentialsPath);
 } else {

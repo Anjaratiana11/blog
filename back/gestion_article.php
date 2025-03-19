@@ -26,6 +26,7 @@ if (isset($_GET['delete_id'])) {
     <meta name="keywords" content="administration, articles, gestion, supprimer, modifier">
     <meta name="author" content="Designova Team">
     <title>Administration des Articles</title>
+    <link rel="icon" type="image/png" href="../front/images/logo.png">
     <link rel="stylesheet" href="css/stylesback.css"> <!-- Lien vers votre fichier CSS -->
 </head>
 <body>

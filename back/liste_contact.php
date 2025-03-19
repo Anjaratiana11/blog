@@ -14,6 +14,7 @@ $contacts = findAllContact();  // Récupérer tous les contacts
     <meta name="author" content="Designova Team">
     <title>Liste des Contacts</title>
     <link rel="stylesheet" href="css/stylesback.css"> 
+    <link rel="icon" type="image/png" href="../front/images/logo.png">
 </head>
 <body>
     <header>

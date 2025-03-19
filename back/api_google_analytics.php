@@ -1,19 +1,14 @@
-
 <?php
-
+// Démarrer la session en premier
+session_start();
 
 // Inclusion de l'autoload de Composer
 require_once '../vendor/autoload.php';
-session_start();
+
 // Fonction pour tester l'existence et le chargement des credentials
 function testCredentials() {
-    // Récupérer le chemin des credentials depuis une variable d'environnement
-    $credentialsPath = getenv('GOOGLE_CREDENTIALS_PATH');
-    
-    if (!$credentialsPath) {
-        echo 'La variable d\'environnement GOOGLE_CREDENTIALS_PATH n\'est pas définie ou vide.';
-        return false;
-    }
+    // Définir le chemin des credentials
+    $credentialsPath = '/etc/secrets/designova-454205-6856ed361431.json';
     
     // Vérifier si le fichier existe
     if (!file_exists($credentialsPath)) {

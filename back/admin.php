@@ -5,7 +5,7 @@ session_start();
 // Inclusion de l'autoload de Composer
 require_once '../vendor/autoload.php';
 
-// Initialisation de l'API Google Analytics
+// Initialisation de l'API Google Analytics Data (GA4)
 $client = new Google_Client();
 $client->setApplicationName("Designova Analytics Dashboard");
 
@@ -30,17 +30,21 @@ try {
     die('Erreur lors de l\'initialisation de l\'API Analytics : ' . $e->getMessage());
 }
 
-// Préparation de la requête pour récupérer les sessions des 7 derniers jours
+// Préparation de la requête pour récupérer plusieurs métriques des 7 derniers jours
 $request = new Google_Service_AnalyticsData_RunReportRequest([
     'dateRanges' => [
         ['startDate' => '7daysAgo', 'endDate' => 'today']
     ],
     'metrics' => [
-        ['name' => 'sessions']
+        ['name' => 'sessions'],
+        ['name' => 'activeUsers'],
+        ['name' => 'engagedSessions'],
+        ['name' => 'averageSessionDuration']
     ]
 ]);
 
 try {
+    // Remplace "properties/482561072" par l'ID de propriété GA4 approprié
     $response = $analyticsService->properties->runReport('properties/482561072', $request);
 } catch (Exception $e) {
     die('Erreur lors de la récupération des données Analytics : ' . $e->getMessage());
@@ -53,30 +57,87 @@ try {
     <meta charset="UTF-8">
     <title>Admin Dashboard - Google Analytics & Tag Manager</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 2em; }
-        table { border-collapse: collapse; margin-top: 1em; }
-        table, th, td { border: 1px solid #ccc; padding: 8px; }
-        th { background-color: #f5f5f5; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f8;
+            margin: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        table th, table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        table th {
+            background-color: #2980b9;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        p.message {
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
-    <h1>Dashboard Admin</h1>
+    <div class="container">
+        <h1>Dashboard Admin</h1>
 
-    <section>
-        <h2>Données Google Analytics</h2>
-        <?php
-        if (!empty($response->getRows())) {
-            echo "<table>";
-            echo "<tr><th>Sessions (7 derniers jours)</th></tr>";
-            foreach ($response->getRows() as $row) {
-                $sessions = $row->getMetricValues()[0]->getValue();
-                echo "<tr><td>" . htmlspecialchars($sessions) . "</td></tr>";
+        <section>
+            <h2>Données Google Analytics (7 derniers jours)</h2>
+            <?php
+            $rows = $response->getRows();
+            if (!empty($rows)) {
+                // Affichage dans un tableau avec plusieurs colonnes
+                echo "<table>";
+                echo "<tr>
+                        <th>Sessions</th>
+                        <th>Utilisateurs Actifs</th>
+                        <th>Sessions Engagées</th>
+                        <th>Durée Moyenne des Sessions (s)</th>
+                      </tr>";
+                foreach ($rows as $row) {
+                    // On suppose que l'ordre des métriques est : sessions, activeUsers, engagedSessions, averageSessionDuration
+                    $metrics = $row->getMetricValues();
+                    echo "<tr>";
+                    foreach ($metrics as $metric) {
+                        echo "<td>" . htmlspecialchars($metric->getValue()) . "</td>";
+                    }
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p class='message'>Aucune donnée disponible pour la période demandée.</p>";
             }
-            echo "</table>";
-        } else {
-            echo "<p>Aucune donnée disponible pour la période demandée.</p>";
-        }
-        ?>
-    </section>
+            ?>
+        </section>
+
+        <section>
+            <h2>Données Google Tag Manager</h2>
+            <p>Les données issues de Google Tag Manager ne sont pas directement accessibles via une API de reporting standard.<br>
+            Pour consulter ces données, veuillez accéder à l'interface de Google Tag Manager.</p>
+            <p style="text-align: center;">
+                <a href="https://tagmanager.google.com/" target="_blank" style="color: #2980b9; text-decoration: none; font-weight: bold;">Accéder à Google Tag Manager</a>
+            </p>
+        </section>
+    </div>
 </body>
 </html>

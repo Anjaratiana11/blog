@@ -7,7 +7,7 @@ $defaultPassword = 'password123';
 
 // Vérifier si l'utilisateur est déjà connecté
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: /gestion_article.php");
+    header("Location: back/gestion_article.php");
     exit();
 }
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Connexion réussie
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        header("Location: /index.php");
+        header("Location: back/index.php");
         exit();
     } else {
         $error = "Identifiants incorrects.";

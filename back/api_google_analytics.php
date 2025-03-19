@@ -107,6 +107,7 @@ try {
                 <li><a href="admin.php">Statistiques</a></li>
                 <li><a href="liste_contact.php">Contacts</a></li>
                 <li><a href="gestion_article.php">Articles</a></li>
+                <li><a href="api_google_analytics.php">Goggle analytics & tag manager</a></li>
             </ul>
         </nav>    
     </header>

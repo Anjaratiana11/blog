@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   web:
@@ -6,7 +6,7 @@ services:
     secrets:
       - google_credentials
     environment:
-      - GOOGLE_CREDENTIALS_FILE=/run/secrets/google_credentials
+      - GOOGLE_CREDENTIALS_FILE=/etc/secrets/designova-454205-6856ed361431.json
 
 secrets:
   google_credentials:

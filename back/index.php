@@ -7,9 +7,8 @@ $defaultPassword = 'password123';
 
 // Vérifier si l'utilisateur est déjà connecté
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    // header("Location: back/gestion_article.php");
-    // exit();
-    echo "yep";
+    header("Location: back/gestion_article.php");
+    exit();
 }
 
 $error = '';

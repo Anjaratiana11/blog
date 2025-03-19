@@ -1,11 +1,13 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/var/www/html
-    ports:
-      - "8000:80"
+  web:
+    image: your_image
+    secrets:
+      - google_credentials
+    environment:
+      - GOOGLE_CREDENTIALS_FILE=/run/secrets/google_credentials
+
+secrets:
+  google_credentials:
+    external: true

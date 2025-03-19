@@ -5,27 +5,25 @@ session_start();
 // Inclusion de l'autoload de Composer
 require_once '../vendor/autoload.php';
 
-// INITIALISATION DE L'API GOOGLE ANALYTICS
-$credentials = getenv('GOOGLE_CREDENTIALS');
+// Initialisation de l'API Google Analytics
 $client = new Google_Client();
 $client->setApplicationName("Designova Analytics Dashboard");
 
-// Vérifier si les credentials sont présents et les configurer
-if ($credentials) {
-    $credentialsArray = json_decode($credentials, true);
-    if ($credentialsArray !== null) {
-        $client->setAuthConfig($credentialsArray);
-    } else {
-        die('Erreur : les credentials sont invalides.');
-    }
+// Charger les credentials à partir du secret ou d'une variable d'environnement
+$credentialsPath = '/etc/secrets/google_credentials.json'; // Chemin vers le fichier de credentials dans Docker
+if (file_exists($credentialsPath)) {
+    $client->setAuthConfig($credentialsPath);
 } else {
-    die('Erreur : les credentials Google ne sont pas définis.');
+    $credentials = getenv('GOOGLE_CREDENTIALS'); // Si les credentials sont dans une variable d'environnement
+    if ($credentials) {
+        $client->setAuthConfig(json_decode($credentials, true));
+    } else {
+        die('Erreur : Aucune configuration d\'authentification trouvée.');
+    }
 }
 
-// Ajouter les scopes nécessaires
 $client->addScope('https://www.googleapis.com/auth/analytics.readonly');
 
-// Initialiser le service Analytics
 try {
     $analyticsService = new Google_Service_AnalyticsReporting($client);
 } catch (Exception $e) {
@@ -34,7 +32,7 @@ try {
 
 // Préparation de la requête pour récupérer les sessions des 7 derniers jours
 $request = new Google_Service_AnalyticsReporting_ReportRequest();
-$request->setViewId('G-JHFERGL7X5'); // Votre ID de vue Google Analytics
+$request->setViewId('G-JHFERGL7X5'); // Remplace par ton ID de vue Google Analytics
 $request->setDateRanges([
     new Google_Service_AnalyticsReporting_DateRange([
         'startDate' => '7daysAgo',
@@ -51,13 +49,13 @@ $request->setMetrics([
 $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
 $body->setReportRequests([$request]);
 
-// Récupérer les rapports
 try {
     $reports = $analyticsService->reports->batchGet($body);
 } catch (Exception $e) {
     die('Erreur lors de la récupération des données Analytics : ' . $e->getMessage());
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

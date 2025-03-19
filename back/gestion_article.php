@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/fonctionsBack.php';   // Les fonctions CRUD (findAllArticles, deleteArticle, etc.)
+include_once 'includes/FonctionsBack.php';   // Les fonctions CRUD (findAllArticles, deleteArticle, etc.)
 
 // Récupérer tous les articles
 $articles = findAllArticles();

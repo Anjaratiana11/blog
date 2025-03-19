@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="keywords" content="création, article, ajouter">
     <meta name="author" content="Designova Team">
     <title>Créer un Nouvel Article</title>
+    <link rel="icon" type="image/png" href="../front/images/logo.png">
     <link rel="stylesheet" href="css/stylesback.css"> <!-- Lien vers votre fichier CSS -->
 </head>
 <body>

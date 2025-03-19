@@ -12,7 +12,7 @@
     <meta name="author" content="Designova Team">
     <title>Contact - Designova</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

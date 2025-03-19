@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="description" content="Lisez les avis des utilisateurs sur nos articles et partagez vos propres commentaires.">
     <meta name="keywords" content="avis, article, design, UX, UI, tendances, commentaires, partager">
     <meta name="author" content="Designova Team">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <title>Avis sur l'article - Designova</title>
     <link rel="stylesheet" href="css/styles.css">
     <script>

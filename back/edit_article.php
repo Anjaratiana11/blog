@@ -43,6 +43,7 @@ $categories = findAllCategories();
     <meta name="keywords" content="modifier, article, administration, gestion, SEO">
     <meta name="author" content="Votre Nom ou Nom de l'entreprise">
     <title>Modifier l'Article</title>
+    <link rel="icon" type="image/png" href="../front/images/logo.png">
     <link rel="stylesheet" href="css/stylesback.css"> <!-- Lien vers votre fichier CSS -->
 </head>
 <body>

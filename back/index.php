@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($error): ?>
             <div class="error"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
-        <form action="login.php" method="POST">
+        <form action="index.php" method="POST">
             <input type="text" name="username" placeholder="Nom d'utilisateur" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
             <input type="submit" value="Se connecter">

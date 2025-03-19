@@ -22,6 +22,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta name="description" content="<?= htmlspecialchars($article['title']) ?>">
     <meta name="keywords" content="article, tendances, design, digital, avis, partager, marketing digital">
     <meta name="author" content="<?= htmlspecialchars($article['author']) ?>">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <title><?= htmlspecialchars($article['title']) ?> - Designova</title>
     <link rel="stylesheet" href="css/styles.css">
     <script>

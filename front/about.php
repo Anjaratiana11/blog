@@ -14,6 +14,7 @@
     <meta name="author" content="Designova Team">
     <title>À propos - Designova</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <script>
         window.dataLayer = window.dataLayer || [];

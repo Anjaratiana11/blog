@@ -3,7 +3,7 @@
 session_start();
 
 // Inclusion de l'autoload de Composer
-require_once '../vendor/autoload.php';
+// require_once '../vendor/autoload.php';
 
 // INITIALISATION DE L'API GOOGLE ANALYTICS
 $client = new Google_Client();

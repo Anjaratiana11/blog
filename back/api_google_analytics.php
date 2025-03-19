@@ -8,10 +8,10 @@ require_once '../vendor/autoload.php';
 // Fonction pour tester l'existence et le chargement des credentials
 function testCredentials() {
     // Récupérer le chemin des credentials depuis une variable d'environnement
-    $credentialsPath = getenv('GOOGLE_CREDENTIALS_PATH');
+    $credentialsPath = getenv('GOOGLE_CREDENTIALS');
     
     if (!$credentialsPath) {
-        echo 'La variable d\'environnement GOOGLE_CREDENTIALS_PATH n\'est pas définie ou vide.';
+        echo 'La variable d\'environnement GOOGLE_CREDENTIALS n\'est pas définie ou vide.';
         return false;
     }
     

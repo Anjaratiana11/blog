@@ -37,9 +37,11 @@ function findArticleById($id) {
 function createArticle($title, $content, $author, $category_id) {
     global $conn;
 
-    $sql = "INSERT INTO articles (title, content, author, category_id) VALUES (?, ?, ?, ?)";
+    $created_at = date('Y-m-d H:i:s'); // Génère la date actuelle au format compatible avec MySQL
+
+    $sql = "INSERT INTO articles (title, content, author, category_id, created_at) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssi", $title, $content, $author, $category_id);
+    $stmt->bind_param("sssis", $title, $content, $author, $category_id, $created_at);
 
     if ($stmt->execute()) {
         return $conn->insert_id; 
@@ -47,6 +49,7 @@ function createArticle($title, $content, $author, $category_id) {
         return false;
     }
 }
+
 
 function updateArticle($id, $title, $content, $author, $category_id) {
     global $conn;

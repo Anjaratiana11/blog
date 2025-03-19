@@ -70,7 +70,15 @@ if (isset($_GET['delete_id'])) {
                         <tr>
                             <td><?php echo htmlspecialchars($article['title']); ?></td>
                             <td><?php echo htmlspecialchars($article['author']); ?></td>
-                            <td><?php echo date("d/m/Y H:i", strtotime($article['created_at'])); ?></td>
+                            <td>
+                                <?php 
+                                if (!empty($article['created_at'])) {
+                                    echo date("d/m/Y H:i", strtotime($article['created_at']));
+                                } else {
+                                    echo "Date non disponible";
+                                }
+                                ?>
+                            </td>
                             <td>
                                 <a href="edit_article.php?id=<?php echo $article['id']; ?>" class="btn-edit">Modifier</a>
                                 <a href="gestion_article.php?delete_id=<?php echo $article['id']; ?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">Supprimer</a>

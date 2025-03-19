@@ -55,6 +55,7 @@ try {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="keywords" content="contacts, gestion des messages, administration">
     <title>Admin Dashboard - Google Analytics & Tag Manager</title>
     <style>
         body {
@@ -96,8 +97,19 @@ try {
             margin: 0 auto;
         }
     </style>
+    <link rel="stylesheet" href="css/stylesback.css"> 
+    <link rel="icon" type="image/png" href="../front/images/logo.png">
 </head>
 <body>
+<header>
+        <nav>
+            <ul>
+                <li><a href="admin.php">Statistiques</a></li>
+                <li><a href="liste_contact.php">Contacts</a></li>
+                <li><a href="gestion_article.php">Articles</a></li>
+            </ul>
+        </nav>    
+    </header>
     <div class="container">
         <h1>Dashboard Admin</h1>
 

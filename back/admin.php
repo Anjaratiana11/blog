@@ -9,10 +9,23 @@ require_once '../vendor/autoload.php';
 $credentials = getenv('GOOGLE_CREDENTIALS');
 $client = new Google_Client();
 $client->setApplicationName("Designova Analytics Dashboard");
-if ($credentials) {
-    $client->setAuthConfig(json_decode($credentials, true));
-}$client->addScope('https://www.googleapis.com/auth/analytics.readonly');
 
+// Vérifier si les credentials sont présents et les configurer
+if ($credentials) {
+    $credentialsArray = json_decode($credentials, true);
+    if ($credentialsArray !== null) {
+        $client->setAuthConfig($credentialsArray);
+    } else {
+        die('Erreur : les credentials sont invalides.');
+    }
+} else {
+    die('Erreur : les credentials Google ne sont pas définis.');
+}
+
+// Ajouter les scopes nécessaires
+$client->addScope('https://www.googleapis.com/auth/analytics.readonly');
+
+// Initialiser le service Analytics
 try {
     $analyticsService = new Google_Service_AnalyticsReporting($client);
 } catch (Exception $e) {
@@ -38,6 +51,7 @@ $request->setMetrics([
 $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
 $body->setReportRequests([$request]);
 
+// Récupérer les rapports
 try {
     $reports = $analyticsService->reports->batchGet($body);
 } catch (Exception $e) {

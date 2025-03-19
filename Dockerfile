@@ -1,22 +1,18 @@
 FROM php:8.1-apache
 
-# Installer l'extension mysqli
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+# Installer les extensions nécessaires
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install mysqli zip \
+    && docker-php-ext-enable mysqli
 
-# Installer Composer globalement
+# Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Définir le répertoire de travail
-WORKDIR /var/www/html
-
-# Copier les fichiers composer pour profiter du cache Docker
-COPY composer.json composer.lock ./
-
-# Installer les dépendances PHP via Composer (sans dev et avec autoloader optimisé)
-RUN composer install --no-dev --optimize-autoloader
-
-# Copier le reste des fichiers du projet dans le répertoire de travail
-COPY . .
+# Copie des fichiers du projet dans le répertoire par défaut d'Apache
+COPY . /var/www/html/
 
 # Attribution des droits nécessaires
 RUN chown -R www-data:www-data /var/www/html/ && \
@@ -32,10 +28,14 @@ RUN echo "<Directory /var/www/html/>\n\
     </Directory>" > /etc/apache2/conf-available/override.conf && \
     a2enconf override
 
-# Activer l'affichage des erreurs PHP (désactiver en production)
+# Activer l'affichage des erreurs PHP
 RUN echo "display_errors=On\n\
     display_startup_errors=On\n\
     error_reporting=E_ALL\n" > /usr/local/etc/php/conf.d/errors.ini
+
+# Installer les dépendances PHP si un composer.json existe
+WORKDIR /var/www/html/
+RUN if [ -f "composer.json" ]; then composer install --no-dev; fi
 
 # Exposition du port 80
 EXPOSE 80

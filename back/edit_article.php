@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/fonctionsBack.php';   
+include_once 'includes/FonctionsBack.php';   
 
 // Récupérer l'ID de l'article à modifier depuis l'URL
 if (isset($_GET['id'])) {

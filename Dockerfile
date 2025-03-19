@@ -1,8 +1,15 @@
 FROM php:8.1-apache
 
+# Installer les extensions nécessaires
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install mysqli zip \
+    && docker-php-ext-enable mysqli
 
-# Installer l'extension mysqli
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+# Installer Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copie des fichiers du projet dans le répertoire par défaut d'Apache
 COPY . /var/www/html/
@@ -25,6 +32,10 @@ RUN echo "<Directory /var/www/html/>\n\
 RUN echo "display_errors=On\n\
     display_startup_errors=On\n\
     error_reporting=E_ALL\n" > /usr/local/etc/php/conf.d/errors.ini
+
+# Installer les dépendances PHP si un composer.json existe
+WORKDIR /var/www/html/
+RUN if [ -f "composer.json" ]; then composer install --no-dev; fi
 
 # Exposition du port 80
 EXPOSE 80

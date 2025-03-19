@@ -1,5 +1,5 @@
 <?php 
-include_once 'includes/fonctionsBack.php';  // Les fonctions CRUD (createArticle, findAllCategories)
+include_once 'includes/FonctionsBack.php';  // Les fonctions CRUD (createArticle, findAllCategories)
 
 // Récupérer les catégories disponibles
 $categories = findAllCategories();

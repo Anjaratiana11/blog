@@ -1,0 +1,12 @@
+{
+  "name": "designova/blog",
+  "description": "Blog utilisant Google Analytics et Google Tag Manager",
+  "require": {
+    "google/apiclient": "^2.12"
+  },
+  "autoload": {
+    "psr-4": {
+      "Designova\\": "back/"
+    }
+  }
+}

@@ -22,9 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Connexion réussie
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        // header("Location: back/index.php");
-        // exit();
-        echo "nope";
+        header("Location: ./index.php");
+        exit();
     } else {
         $error = "Identifiants incorrects.";
     }

@@ -14,7 +14,7 @@ $credentialsPath = '/etc/secrets/designova-454205-6856ed361431.json'; // Chemin 
 if (file_exists($credentialsPath)) {
     $client->setAuthConfig($credentialsPath);
 } else {
-    $credentials = getenv('GOOGLE_CREDENTIALS'); // Si les credentials sont dans une variable d'environnement
+    $credentials = getenv('GOOGLE_CREDENTIALS');
     if ($credentials) {
         $client->setAuthConfig(json_decode($credentials, true));
     } else {
@@ -25,32 +25,23 @@ if (file_exists($credentialsPath)) {
 $client->addScope('https://www.googleapis.com/auth/analytics.readonly');
 
 try {
-    $analyticsService = new Google_Service_AnalyticsReporting($client);
+    $analyticsService = new Google_Service_AnalyticsData($client);
 } catch (Exception $e) {
     die('Erreur lors de l\'initialisation de l\'API Analytics : ' . $e->getMessage());
 }
 
 // Préparation de la requête pour récupérer les sessions des 7 derniers jours
-$request = new Google_Service_AnalyticsReporting_ReportRequest();
-$request->setViewId('G-JHFERGL7X5'); // Remplace par ton ID de vue Google Analytics
-$request->setDateRanges([
-    new Google_Service_AnalyticsReporting_DateRange([
-        'startDate' => '7daysAgo',
-        'endDate'   => 'today'
-    ])
+$request = new Google_Service_AnalyticsData_RunReportRequest([
+    'dateRanges' => [
+        ['startDate' => '7daysAgo', 'endDate' => 'today']
+    ],
+    'metrics' => [
+        ['name' => 'sessions']
+    ]
 ]);
-$request->setMetrics([
-    new Google_Service_AnalyticsReporting_Metric([
-        'expression' => 'ga:sessions',
-        'alias'      => 'Sessions'
-    ])
-]);
-
-$body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-$body->setReportRequests([$request]);
 
 try {
-    $reports = $analyticsService->reports->batchGet($body);
+    $response = $analyticsService->properties->runReport('properties/482561072', $request);
 } catch (Exception $e) {
     die('Erreur lors de la récupération des données Analytics : ' . $e->getMessage());
 }
@@ -74,35 +65,18 @@ try {
     <section>
         <h2>Données Google Analytics</h2>
         <?php
-        // Traitement de la réponse et affichage des données
-        if (!empty($reports)) {
-            foreach ($reports as $report) {
-                $rows = $report->getData()->getRows();
-                if (!empty($rows)) {
-                    echo "<table>";
-                    echo "<tr><th>Sessions (7 derniers jours)</th></tr>";
-                    foreach ($rows as $row) {
-                        $metrics = $row->getMetrics();
-                        foreach ($metrics as $metric) {
-                            $values = $metric->getValues();
-                            echo "<tr><td>" . htmlspecialchars($values[0]) . "</td></tr>";
-                        }
-                    }
-                    echo "</table>";
-                } else {
-                    echo "<p>Aucune donnée disponible pour la période demandée.</p>";
-                }
+        if (!empty($response->getRows())) {
+            echo "<table>";
+            echo "<tr><th>Sessions (7 derniers jours)</th></tr>";
+            foreach ($response->getRows() as $row) {
+                $sessions = $row->getMetricValues()[0]->getValue();
+                echo "<tr><td>" . htmlspecialchars($sessions) . "</td></tr>";
             }
+            echo "</table>";
         } else {
-            echo "<p>Aucune donnée retournée par l'API.</p>";
+            echo "<p>Aucune donnée disponible pour la période demandée.</p>";
         }
         ?>
-    </section>
-
-    <section>
-        <h2>Données Google Tag Manager</h2>
-        <p>Les données issues de Google Tag Manager ne sont pas directement accessibles via une API de reporting standard. Pour afficher ces données, consultez l’interface de GTM ou développez une solution personnalisée via l’API Tag Manager.</p>
-        <p><a href="https://tagmanager.google.com/" target="_blank">Accéder à Google Tag Manager</a></p>
     </section>
 </body>
 </html>

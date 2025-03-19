@@ -1,5 +1,5 @@
 <?php 
-include_once 'includes/fonctionsBack.php';    // Les fonctions CRUD (findAllContact)
+include_once 'includes/FonctionsBack.php';    // Les fonctions CRUD (findAllContact)
 
 $contacts = findAllContact();  // Récupérer tous les contacts
 ?>

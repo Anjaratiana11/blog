@@ -6,10 +6,12 @@ session_start();
 require_once '../vendor/autoload.php';
 
 // INITIALISATION DE L'API GOOGLE ANALYTICS
+$credentials = getenv('GOOGLE_CREDENTIALS');
 $client = new Google_Client();
 $client->setApplicationName("Designova Analytics Dashboard");
-$client->setAuthConfig('./config/designova-454205-6856ed361431.json'); // Chemin vers vos identifiants
-$client->addScope('https://www.googleapis.com/auth/analytics.readonly');
+if ($credentials) {
+    $client->setAuthConfig(json_decode($credentials, true));
+}$client->addScope('https://www.googleapis.com/auth/analytics.readonly');
 
 try {
     $analyticsService = new Google_Service_AnalyticsReporting($client);

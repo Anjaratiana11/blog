@@ -8,7 +8,7 @@ require_once '../vendor/autoload.php';
 // Fonction pour tester l'existence et le chargement des credentials
 function testCredentials() {
     // Définir le chemin des credentials
-    $credentialsPath = 'etc/secrets/designova-454205-6856ed361431.json';
+    $credentialsPath = '../designova-454205-6856ed361431.json';
     
     // Vérifier si le fichier existe
     if (!file_exists($credentialsPath)) {

@@ -1,43 +1,43 @@
+
 <?php
 
-// Fonction pour rechercher un fichier dans un répertoire et ses sous-répertoires
-function findFile($directory, $filename) {
-    $files = scandir($directory);
 
-    foreach ($files as $file) {
-        if ($file === '.' || $file === '..') {
-            continue;
-        }
+// Inclusion de l'autoload de Composer
+require_once '../vendor/autoload.php';
 
-        $filePath = $directory . DIRECTORY_SEPARATOR . $file;
-
-        if (is_dir($filePath)) {
-            // Recherche récursive dans le sous-répertoire
-            $result = findFile($filePath, $filename);
-            if ($result) {
-                return $result; // On retourne le chemin trouvé
-            }
-        } elseif ($file === $filename) {
-            // Le fichier est trouvé
-            return $filePath;
-        }
+// Fonction pour tester l'existence et le chargement des credentials
+function testCredentials() {
+    // Récupérer le chemin des credentials depuis une variable d'environnement
+    $credentialsPath = getenv('GOOGLE_CREDENTIALS_PATH');
+    
+    if (!$credentialsPath) {
+        echo 'La variable d\'environnement GOOGLE_CREDENTIALS_PATH n\'est pas définie ou vide.';
+        return false;
     }
-
-    return false; // Fichier non trouvé
+    
+    // Vérifier si le fichier existe
+    if (!file_exists($credentialsPath)) {
+        echo 'Le fichier de credentials Google n\'existe pas à l\'emplacement spécifié : ' . $credentialsPath;
+        return false;
+    }
+    
+    // Essayer de charger les credentials avec Google_Client
+    try {
+        $client = new Google_Client();
+        $client->setApplicationName("Designova Analytics Dashboard");
+        $client->setAuthConfig($credentialsPath);  // Charger le fichier JSON des credentials
+        $client->addScope('https://www.googleapis.com/auth/analytics.readonly');
+        
+        // Test d'authentification avec l'API Analytics
+        $analyticsService = new Google_Service_AnalyticsReporting($client);
+        echo 'Les credentials ont été chargés avec succès !';
+        return true;
+    } catch (Exception $e) {
+        echo 'Erreur lors du chargement des credentials ou de l\'authentification : ' . $e->getMessage();
+        return false;
+    }
 }
 
-// Nom du fichier à rechercher
-$filename = 'designova-454205-6856ed361431.json';
-
-// Répertoire de départ (le dossier actuel)
-$startingDirectory = __DIR__;
-
-// Recherche du fichier
-$result = findFile($startingDirectory, $filename);
-
-if ($result) {
-    echo "✅ Fichier trouvé : $result";
-} else {
-    echo "❌ Fichier non trouvé.";
-}
+// Lancer le test des credentials
+testCredentials();
 ?>

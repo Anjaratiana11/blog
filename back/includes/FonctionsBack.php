@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/blog/back/includes/dbconnect.php';
+require_once 'dbconnect.php';
 
 function findAllArticles() {
     global $conn;  
